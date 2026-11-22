@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c27">
+  <meta name="description" content="Three winter speaking games for English learners at A2–B1.">
+  <title>A Little Winter Play</title>
+  <link rel="icon" href="assets/snowflake.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell masthead">
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">❄</span><span>Winter Play</span></a>
+      <div class="header-actions">
+        <span class="level">English speaking <span aria-hidden="true">·</span> A2–B1</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="home-page" aria-labelledby="home-title">
+      <div class="hero shell">
+        <div class="hero-snow" id="hero-snow" aria-hidden="true"></div>
+        <button class="hero-snow-toggle" id="hero-snow-toggle" type="button">Pause snow</button>
+        <div class="hero-content">
+          <div class="hero-mark" aria-hidden="true"><span></span> ❄ <span></span></div>
+          <h1 id="home-title" tabindex="-1"><img src="assets/home-title.webp" alt="A Little Winter Play" width="1240" height="570"></h1>
+          <p>Three winter games to get you talking.</p>
+          <div class="hero-actions">
+            <a class="primary" href="#pack">Start playing</a>
+            <a class="secondary" href="https://vk.ru/braveandcuriousenglish" target="_blank" rel="noopener noreferrer" lang="ru">ВСЛУХ Lexically в VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="shell games-section">
+        <div class="section-line">
+          <h2>Choose a game</h2>
+          <span id="home-progress" class="home-progress"></span>
+        </div>
+        <div class="cards">
+          <a href="#pack" class="game-card" data-card="pack">
+            <div class="card-photo"><img src="assets/pack-card.webp" alt="" width="768" height="512"></div>
+            <div class="card-body"><span class="card-type">Drag &amp; drop</span><h3>Pack Your Winter Survival Kit</h3><span class="card-link">Play game</span></div>
+          </a>
+          <a href="#frost" class="game-card" data-card="frost">
+            <div class="card-photo"><img src="assets/frost-card.webp" alt="" width="768" height="512"></div>
+            <div class="card-body"><span class="card-type">Scratch &amp; guess</span><h3>What’s Behind the Frost?</h3><span class="card-link">Play game</span></div>
+          </a>
+          <a href="#compare" class="game-card" data-card="compare">
+            <div class="card-photo"><img src="assets/expectation.webp" alt="" width="1532" height="508"></div>
+            <div class="card-body"><span class="card-type">Slide to compare</span><h3>Winter: Expectations vs Reality</h3><span class="card-link">Play game</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div id="game-view" class="shell game-view" hidden>
+      <nav class="game-nav" aria-label="Games">
+        <a href="#home" class="back-link">All games</a>
+        <ul class="game-steps">
+          <li><a href="#pack" data-step="pack">1<span> · Pack</span></a></li>
+          <li><a href="#frost" data-step="frost">2<span> · Guess</span></a></li>
+          <li><a href="#compare" data-step="compare">3<span> · Compare</span></a></li>
+        </ul>
+      </nav>
+
+      <section id="pack" class="game-panel" aria-labelledby="pack-title" hidden>
+        <div class="game-heading">
+          <div><div class="eyebrow">Drag &amp; drop</div><h1 id="pack-title" tabindex="-1">Pack Your Winter Survival Kit</h1><p>Reveal your destination. Then pack five things and explain why you need them.</p></div>
+        </div>
+        <div class="destination-bar">
+          <div><div class="eyebrow">Your destination</div><strong id="destination" aria-live="polite">Where are you going?</strong></div>
+          <button class="primary" id="destination-button" type="button">Reveal your destination</button>
+        </div>
+        <div class="pack-grid">
+          <section class="play-surface gear" aria-labelledby="gear-title">
+            <div class="surface-title"><h2 id="gear-title">What will you take?</h2><p>Drag an item to the suitcase or tap it to pack it.</p></div>
+            <div id="item-bank" class="item-bank"></div>
+          </section>
+          <section class="play-surface suitcase-surface" aria-labelledby="suitcase-title">
+            <div class="surface-title suitcase-title"><h2 id="suitcase-title">Your suitcase</h2><span class="counter" id="pack-count" aria-live="polite">0 / 5</span></div>
+            <div id="suitcase" class="suitcase">
+              <div class="suitcase-photo" aria-hidden="true"></div>
+              <div class="suitcase-lining">
+                <div class="suitcase-empty" id="suitcase-empty">Drop your items here</div>
+                <div id="packed-items" class="packed-items"></div>
+              </div>
+            </div>
+            <div class="suitcase-controls">
+              <p id="pack-message" role="status">Reveal your destination to start.</p>
+              <button class="primary" type="button" id="twist-button" disabled>Reveal the twist</button>
+            </div>
+          </section>
+        </div>
+        <section id="twist" class="challenge" hidden aria-live="polite">
+          <div class="eyebrow">Plot twist</div>
+          <h2 id="twist-title" tabindex="-1"></h2>
+          <p id="twist-question"></p>
+        </section>
+        <details class="speaking">
+          <summary>Speaking help</summary>
+          <div class="speaking-content">
+            <ul class="chunks">
+              <li>I’d definitely take…</li>
+              <li>It might come in handy if…</li>
+              <li>I could do without…</li>
+              <li>I’d pack it in case…</li>
+            </ul>
+            <p class="speaking-example"><strong>Example</strong> <em>I’d pack a torch in case I need to go outside after dark.</em></p>
+          </div>
+        </details>
+        <div class="game-footer"><button id="pack-next" class="primary" type="button" disabled>Next game</button></div>
+      </section>
+
+      <section id="frost" class="game-panel" aria-labelledby="frost-title" hidden>
+        <div class="game-heading">
+          <div><div class="eyebrow">Scratch &amp; guess</div><h1 id="frost-title" tabindex="-1">What’s Behind the Frost?</h1><p>Rub away a little frost. Make a guess before you clear the whole window.</p></div>
+        </div>
+        <div class="frost-layout">
+          <section class="play-surface frost-surface" aria-label="Frozen window">
+            <div class="frost-frame" id="frost-frame">
+              <div class="window">
+                <img id="hidden-photo" src="assets/dog.webp" alt="" width="768" height="512">
+                <canvas id="ice" aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <div class="frost-controls">
+              <button class="secondary" type="button" id="clue-button">Reveal a small patch</button>
+              <button class="primary" type="button" id="reveal-photo">Reveal the photo</button>
+              <button class="secondary" type="button" id="next-photo" hidden>New photo</button>
+              <span class="photo-counter" id="photo-count" aria-live="polite">Photo 1 of 5</span>
+            </div>
+          </section>
+          <aside class="side-column">
+            <div class="challenge frost-question" id="frost-question" aria-live="polite">
+              <div class="eyebrow" id="frost-prompt-label">Your guess</div>
+              <h2 id="frost-prompt-title">What do you think it is?</h2>
+              <p id="frost-prompt-text">Name one detail you can see. Then say what you think is happening.</p>
+            </div>
+            <details class="speaking" open>
+              <summary>Speaking help</summary>
+              <div class="speaking-content">
+                <ul class="chunks">
+                  <li>It looks like…</li>
+                  <li>I have a feeling that…</li>
+                  <li>It could be…</li>
+                  <li>I wasn’t expecting to see…</li>
+                </ul>
+              </div>
+            </details>
+          </aside>
+        </div>
+        <div class="game-footer"><button id="frost-next" class="primary" type="button" disabled>Next game</button></div>
+      </section>
+
+      <section id="compare" class="game-panel" aria-labelledby="compare-title" hidden>
+        <div class="game-heading">
+          <div><div class="eyebrow">Slide to compare</div><h1 id="compare-title" tabindex="-1">Winter: Expectations vs Reality</h1><p>Describe the photo first. Then drag the slider left and say what actually happened.</p></div>
+        </div>
+        <div id="scene-picker" class="scene-picker" role="group" aria-label="Choose a scene"></div>
+        <div class="compare-layout">
+          <section class="play-surface compare-surface" aria-label="Photograph comparison">
+            <div class="comparison" id="comparison">
+              <img src="assets/reality.webp" class="reality-photo" alt="" width="1532" height="508">
+              <img src="assets/expectation.webp" class="expectation-photo" alt="Fresh snow and empty seats outside a warmly lit café." width="1532" height="508">
+              <span class="photo-label expectation-label">Expectation</span><span class="photo-label reality-label">Reality</span>
+              <div class="slider-handle" aria-hidden="true"><span>‹ ›</span></div>
+              <input id="slider" type="range" min="0" max="100" value="100" aria-label="Compare expectation with reality" aria-valuetext="All expectation">
+            </div>
+            <div class="slider-options"><button class="text-button" id="show-expectation" type="button" aria-pressed="true">Show expectation</button><button class="text-button" id="show-reality" type="button" aria-pressed="false">Show reality</button></div>
+          </section>
+          <aside class="side-column">
+            <div class="challenge" aria-live="polite">
+              <div class="eyebrow" id="compare-prompt-label">Before you slide</div>
+              <h2 id="compare-prompt-title">What were you expecting?</h2>
+              <p id="compare-prompt-text">Would you stop at this café? What do you think you’ll find when you get there?</p>
+            </div>
+            <details class="speaking" open>
+              <summary>Speaking help</summary>
+              <div class="speaking-content">
+                <ul class="chunks">
+                  <li>I thought it would be… but it turned out…</li>
+                  <li>In reality,…</li>
+                  <li>Instead of…</li>
+                  <li>It wasn’t quite what I’d expected.</li>
+                </ul>
+              </div>
+            </details>
+          </aside>
+        </div>
+        <div class="game-footer"><button id="compare-finish" class="primary" type="button" disabled>Finish game</button></div>
+      </section>
+    </div>
+  </main>
+  <footer class="shell site-footer"><span aria-hidden="true">❄</span> Winter Play</footer>
+</body>
+</html>
